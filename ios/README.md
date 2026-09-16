@@ -63,8 +63,9 @@ and [Developer Mode setup](https://developer.apple.com/documentation/xcode/enabl
 
 ## Play
 
-1. Start `python3 joystream.py` on Linux, with `/dev/uinput` permissions as
-   described in the [main README](../README.md).
+1. Start `python3 joystream.py` on Linux or `./macos/run.sh` on macOS. See the
+   [main README](../README.md) for Linux permissions or the standalone macOS
+   server setup.
 2. Open joystream on the phone and enter the server's address, for example
    `192.168.1.10:8000` or `http://192.168.1.10:8000`.
 3. Allow **Local Network** access when iOS asks. Hold the phone in landscape.
@@ -73,7 +74,7 @@ The app remembers the address and reconnects automatically. Tap the status
 at the bottom to change servers. You can use a LAN IP, `.local` name, or
 Tailscale IP. A bare host defaults to port 8000 and `/ws`. Explicit `ws://`
 URLs also work; `https://` and `wss://` use TLS for a separately configured
-secure proxy (the included Python server uses plain WebSockets).
+secure proxy (both included servers use plain WebSockets).
 
 Touch anywhere on the left or right half to place that stick's center, then
 drag. A/B/X/Y, L1/R1, Select, and Start can be held alongside both sticks.
@@ -87,7 +88,7 @@ the app closes the connection so the server releases all inputs; its existing
 with neutral inputs. Opening the server editor disconnects until it is closed.
 
 If connection attempts fail, check the server address/port, same-network
-reachability, Linux firewall, and the app's Local Network permission in iOS
+reachability, the computer's firewall, and the app's Local Network permission in iOS
 Settings. Only one client can control a server at a time.
 
 ## Build and test without a phone

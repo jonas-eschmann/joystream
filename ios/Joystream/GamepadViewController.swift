@@ -58,7 +58,7 @@ final class GamepadViewController: UIViewController {
         editingServer = true
         client.stop()
         let alert = UIAlertController(title: "joystream", message:
-            "Enter the address printed by your Linux server. Use the same Wi-Fi or a Tailscale IP.",
+            "Enter the address printed by your joystream server. Use the same Wi-Fi or a Tailscale IP.",
             preferredStyle: .alert)
         alert.addTextField { field in
             field.placeholder = "192.168.1.10:8000"
