@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "joystream"
+version = "0.0.1"
+description = "Turn a phone's touchscreen into a Linux gamepad"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{name = "Jonas Eschmann", email = "jonas.eschmann@gmail.com"}]
+license = {text = "MIT"}
+keywords = ["gamepad", "joystick", "uinput", "evdev", "touchscreen", "websocket"]
+classifiers = [
+    "Environment :: Console",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Topic :: Games/Entertainment",
+]
+dependencies = [
+    "websockets>=13",
+    "evdev>=1.6",
+]
+
+[project.scripts]
+joystream = "joystream:cli"
+
+# Single-module layout: joystream.py reads index.html from the directory it
+# lives in, so both files must be shipped side by side.
+[tool.hatch.build.targets.wheel]
+only-include = ["joystream.py", "index.html"]
+
+[tool.hatch.build.targets.sdist]
+only-include = ["joystream.py", "index.html", "README.md"]

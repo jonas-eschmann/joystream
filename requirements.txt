@@ -1,0 +1,2 @@
+websockets>=13
+evdev>=1.6
