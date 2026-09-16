@@ -2,6 +2,10 @@
 
 Turn a phone's touchscreen into a Linux gamepad.
 
+Use the [native iPhone app](ios/README.md) or the browser client below. Both
+connect to the same Python server; the native app has landscape controls,
+keeps the screen awake while connected, and needs no web page.
+
 One Python process serves a touch-gamepad web page and takes the phone's input
 back over a websocket on the same port. Every update is written to a virtual
 gamepad created through `/dev/uinput`, so games, SDL2, `jstest`, and anything
@@ -10,6 +14,7 @@ else on the box see an ordinary controller.
 ```
 phone browser  --http-->  joystream.py  --uinput-->  /dev/input/eventN, /dev/input/jsN
    index.html  --ws---->
+   iPhone app  --ws---->
 ```
 
 ## Install

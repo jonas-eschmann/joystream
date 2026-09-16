@@ -1,0 +1,38 @@
+name: Joystream
+options:
+  deploymentTarget:
+    iOS: "16.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    TARGETED_DEVICE_FAMILY: "1"
+    CODE_SIGN_STYLE: Automatic
+    JOYSTREAM_BUNDLE_ID: local.joystream.client
+targets:
+  Joystream:
+    type: application
+    platform: iOS
+    sources: [Joystream]
+    settings:
+      base:
+        INFOPLIST_FILE: Joystream/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: $(JOYSTREAM_BUNDLE_ID)
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+  JoystreamTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [Tests]
+    dependencies:
+      - target: Joystream
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: local.joystream.tests
+schemes:
+  Joystream:
+    build:
+      targets:
+        Joystream: all
+    test:
+      targets: [JoystreamTests]
