@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "joystream"
 version = "0.0.1"
-description = "Turn a phone's touchscreen into a Linux gamepad"
+description = "Phone gamepad input for Python applications and Linux"
 readme = "README.md"
 requires-python = ">=3.9"
 authors = [{name = "Jonas Eschmann", email = "jonas.eschmann@gmail.com"}]
@@ -15,21 +15,24 @@ classifiers = [
     "Environment :: Console",
     "License :: OSI Approved :: MIT License",
     "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
     "Programming Language :: Python :: 3",
     "Topic :: Games/Entertainment",
 ]
 dependencies = [
     "websockets>=13",
-    "evdev>=1.6",
 ]
+
+[project.optional-dependencies]
+linux = ["evdev>=1.6"]
 
 [project.scripts]
 joystream = "joystream:cli"
 
-# Single-module layout: joystream.py reads index.html from the directory it
-# lives in, so both files must be shipped side by side.
+# The CLI and embeddable receiver share the bundled browser page.
 [tool.hatch.build.targets.wheel]
-only-include = ["joystream.py", "index.html"]
+only-include = ["joystream.py", "joystream_input.py", "index.html"]
 
 [tool.hatch.build.targets.sdist]
-only-include = ["joystream.py", "index.html", "README.md"]
+only-include = ["joystream.py", "joystream_input.py", "index.html", "README.md", "examples", "tests/test_input.py"]
