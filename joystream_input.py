@@ -139,7 +139,7 @@ class Receiver:
     def read(self):
         with self._lock:
             if self._token is None or monotonic() - self._updated >= self.timeout:
-                return State()
+                self._state = State()
             return self._state
 
     def _handle(self, connection, token):
